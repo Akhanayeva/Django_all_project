@@ -16,7 +16,9 @@ class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
 class StudentListCreateView(generics.ListCreateAPIView):
-    # ... (previous code)
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def list(self, request, *args, **kwargs):
